@@ -1,0 +1,126 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Full
+Input = String
+Parser = LL
+#RegularDefinitions
+letra : [A-Z a-z]
+ascii : [^ \n \r ]
+ascii2 : [^ "}" ]
+hex : [0-9 A-F]
+cont: [0-3]
+numero: [0-9]
+#Tokens
+: [\s\t\n\r]*
+//comentario de linha
+: "/" "/" {ascii}*  (\n|\r)
+//comentario de bloco 
+: "{" {ascii2}* "}"
+
+//registradores
+"A"
+"B"
+"C"
+"D"
+"E"
+
+// enderecos e constantes
+ROM: {hex}{hex}
+RAM: #{hex}{hex}
+REND: #{hex}{hex}{hex}{hex}
+DRAM: #
+
+//entrada e saida
+IN: "IN" {cont}
+OUT: "OUT" {cont}
+
+// identificadores
+ID: {letra}({letra}|{numero})*
+ADD = ID : "ADD"
+SUB = ID : "SUB"
+AND = ID : "AND"
+OR = ID : "OR"
+XOR = ID : "XOR"
+NOT = ID : "NOT"
+MOV = ID : "MOV"
+INC = ID : "INC"
+JMP = ID : "JMP"
+JMPC = ID : "JMPC"
+JMPZ = ID : "JMPZ"
+CALL = ID : "CALL"
+RET = ID : "RET"
+PUSH = ID: "PUSH"
+POP = ID: "POP"
+
+//label
+LABEL: {letra}({letra}|{numero})* :
+
+//símbolos especiais
+";"
+","
+
+#NonTerminals
+<programa>
+<label>
+<instrucoes>
+<instrucao>
+<rend>
+<reg>
+<tipo>
+<tipo2>
+<tipo3>
+
+#Grammar
+<programa> ::= #50 <instrucoes> #52 ;
+
+<instrucoes> ::= î | <label> #51 <instrucao> ";" <instrucoes> ;
+
+<label> ::=  î | LABEL #43 ;
+
+<instrucao> ::= 	ADD #1 <tipo> |
+		SUB #2 <tipo> |
+		AND #3 <tipo> |
+		OR #4 <tipo> |
+		XOR #5 <tipo> |
+		NOT #6 <tipo> |
+		MOV #7 <tipo> |
+		INC #8 <tipo>|
+		JMP #10 #14 #40 <rend> |
+		JMPC #10 #15 #40 <rend> |
+		JMPZ #10 #16 #40 <rend> |
+		CALL #10 #17 #40 <rend> |
+		RET #10 #10 #11 #40 |
+		PUSH #10 #10 #14 <reg> #40 |
+		POP #10 #10 #15 <reg> #40 |
+		PUSH #10 #10 #16 "A" #40 |
+		POP #10 #10 #17 "A" #40;
+
+<rend> ::= REND #41 | ID #42 ;
+
+<reg> ::= "B" #31 |
+	"C" #32 |
+	"D" #33 |
+	"E" #34 ;
+
+<tipo> ::= "A" "," <tipo2> |
+	<reg> #15 #40 "," "A" |
+	#16 #40 RAM #36 "," "A" |
+	IN #35 #17 #40 "," "A" |
+	ROM #37 #10 "," <tipo3> |
+	DRAM <reg> #12 #10 #10 #40 "," "A"  ;
+
+<tipo2> ::= "A" #11 #40 |
+	<reg> #12 #40 |
+	#13 #40 RAM #36 |
+	OUT #35 #14 #40 | 
+	DRAM <reg> #13 #10 #10 #40 ;
+
+<tipo3> ::= "A" #11 #40 #38 |
+	<reg> #12 #40 #38 |
+	#13 #40 #38 RAM #36 ;
