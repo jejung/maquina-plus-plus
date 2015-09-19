@@ -144,6 +144,26 @@ In binary, the bits of the instructions are separated like
 </table>
 <sup>* All the instruction with code 111 in all code pages are High decoder instructions</sup>
 
+### Registers's addresses
+<table width="50%">
+  <tr>
+    <td width="20%" align="center"><b>Code</b></td><td width="80%" align="center"><b>Name</b></td>
+  </tr>
+  <tr>
+    <td width="20%" align="center">00</td><td width="80%" align="center">B</td>
+  </tr>
+  <tr>
+    <td width="20%" align="center">01</td><td width="80%" align="center">C</td>
+  </tr>
+  <tr>
+    <td width="20%" align="center">10</td><td width="80%" align="center">D</td>
+  </tr>
+  <tr>
+    <td width="20%" align="center">11</td><td width="80%" align="center">E</td>
+  </tr>
+</table>
+
+
 ### Oh, i prefer to write code in assembly language...
 ### No problem!
 The `Assembler.jar` file is a Java assembler that compiles source to the Logisim's memory map format, so you can write code and import it to simulation. Some basic examples:
