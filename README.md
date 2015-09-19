@@ -251,7 +251,7 @@ The `Assembler.jar` file is a Java assembler that compiles source to the Logisim
     END:
         JMP END;
 
-### Dynamic memory access - Sets hexa 01 to first 10 adresses of the RAM
+**Dynamic memory access - Sets hex 01 to first 10 addresses of the RAM**
 
     MOV 00,B;
     LOOP:
