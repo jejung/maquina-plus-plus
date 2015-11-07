@@ -164,7 +164,7 @@ In binary, the bits of the instructions are separated like
 </table>
 
 
-### Oh, i prefer to write code in assembly language...
+### Oh, I prefer to write code in assembly language...
 ### No problem!
 The `Assembler.jar` file is a Java assembler that compiles source to the Logisim's memory map format, so you can write code and import it to simulation. Some basic examples:
 
