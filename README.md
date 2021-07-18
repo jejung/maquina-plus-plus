@@ -4,7 +4,7 @@
 
 
 ### What is it?
-Maquina++ (<i>Machine++</i>) is a FURB University's project released in 2003. It was initially created by Jonathan Manoel Borges, who created the entire microcontroller and his assembler, with orientation of professor Miguel Alexandre Wisintainer. This was the first version of the project that is used untill now as an academic tool.
+Maquina++ (<i>Machine++</i>) is a FURB University's project released in 2003. It was initially created by [Jonathan Manoel Borges](https://github.com/jonathan-m-borges/), who created the entire microcontroller and his assembler, with orientation of professor [Miguel Alexandre Wisintainer](http://dsc.inf.furb.br/professores/informacoes/miguel-alexandre-wisintainer). This was the first version of the project that is used untill now as an academic tool.
 In 2014 it was rewriten and improved on the Logisim digital simulator.
 
 ### Caracteristics
